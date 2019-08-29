@@ -3,14 +3,9 @@ from classes.characters import Character
 from classes.monsters import *
 from classes.colours import Colours
 from classes.controllers import Controller
-from classes.magic import Spell
+from classes.magic import *
 from classes.items import *
 
-# Spells
-fire_ball = Spell("Fire ball", "Hits one enemy with a fire ball.", "fire", 2, 10, "enemy")
-flame = Spell("Flame", "Hit all enemies with fire.", "fire", 4, 6, "enemies")
-heal = Spell("Heal", "Heal one person for 6 hit points.", "heal", 2, 6, "ally")
-heal_all = Spell("Heal all", "Heal all allies 4 hit points.", "heal", 4, 4, "allies")
 spell_book = [fire_ball, flame, heal, heal_all]
 
 # Player characters

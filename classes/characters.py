@@ -107,7 +107,7 @@ class Character:
             outcome = 1
             if resistance > 0:
                 outcome = random.randrange(0, resistance+attack_strength+1)
-            print("Attack:",attack_strength, "Resistance:", resistance, "Outcome:", outcome)
+            # print("Attack:",attack_strength, "Resistance:", resistance, "Outcome:", outcome)
             if outcome <= resistance:
                 if report:
                     print(Colours.YELLOW+self.get_The_name()+" resists the spell."+Colours.END)

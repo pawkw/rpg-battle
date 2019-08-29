@@ -49,3 +49,9 @@ class Spell:
             stop_on_error("Failed in magic.py Spell.cast - "+caster.get_The_name()+" "+self.name)
         caster.reduce_magic_points(self.cost)
         return True
+
+# Spells
+fire_ball = Spell("Fire ball", "Hits one enemy with a fire ball.", "fire", 2, 10, "enemy")
+flame = Spell("Flame", "Hit all enemies with fire.", "fire", 4, 6, "enemies")
+heal = Spell("Heal", "Heal one person for 6 hit points.", "heal", 2, 6, "ally")
+heal_all = Spell("Heal all", "Heal all allies 4 hit points.", "heal", 4, 4, "allies")
