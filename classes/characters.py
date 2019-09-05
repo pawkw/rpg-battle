@@ -22,7 +22,7 @@ class Character:
         self.inventory = inventory
         self.defending = False
         self.controller = Controller(self, self.controller_type)
-    
+
     def set_controller(self, controller):
         self.controller = controller
 
@@ -66,7 +66,7 @@ class Character:
                 return False
             else:
                 damage = 0
-                
+
                 # If the character is defending, it does not affect elemental damage.
                 if element:
                     resistance = 0 if element not in self.elemental_resistance else self.elemental_resistance[element]
@@ -99,9 +99,9 @@ class Character:
                 if report:
                     print(Colours.BLUE+self.get_The_name()+" receives "+str(attack_damage)+" magic points."+Colours.END)
                 return attack_damage
-            
+
             resistance = self.magic_resistance if element not in self.elemental_resistance else self.elemental_resistance[element]
-            
+
             # Compare attack strength against self.defense.
             # Elemental dammage won't occur unless there is a hit first.
             outcome = 1
@@ -119,7 +119,7 @@ class Character:
                 damage = attack_damage*-resistance
             else:
                 damage = attack_damage
-            
+
             self.take_damage(damage)
             if report:
                 print(Colours.RED+self.get_The_name()+" is hit for "+str(damage)+" points "+element+" damage!"+Colours.END)
@@ -153,7 +153,7 @@ class Character:
         self.defending = True
         if report:
             print(Colours.YELLOW+self.get_name()+" is defending."+Colours.END)
-    
+
     def reset_defending(self):
         self.defending = False
 
@@ -165,19 +165,17 @@ class Character:
 
     def print_status(self, name_colour, bar_colour, hide_magic_points = False):
         hp_bar_length = 61 if hide_magic_points else 25
-        hp_bar = "█"*int(self.get_hit_points()/self.get_max_hit_points()*hp_bar_length)+" "*hp_bar_length
-        name = self.get_name()+":"+" "*15
-        hp_num = "      "+self.get_hp_status_string()
+        hp_bar = "█"*int(self.get_hit_points()/self.get_max_hit_points()*hp_bar_length)
+        name = self.get_name()+":"
 
         mp_bar = " "*25
         mp_num = "      0/0"
 
-        output = name_colour + name[:15] + Colours.END + " " + hp_num[-9:] + " |" + bar_colour + hp_bar[:hp_bar_length] + Colours.END + "|"
+        output = name_colour + name.ljust(15) + Colours.END + " " + self.get_hp_status_string().rjust(9) + " |" + bar_colour + hp_bar.ljust(hp_bar_length) + Colours.END + "|"
 
         if self.get_max_magic_points() != 0 and not hide_magic_points:
-            mp_num = "      "+str(self.get_magic_points())+"/"+str(self.get_max_magic_points())
-            mp_bar = "█"*int(self.get_magic_points()/self.get_max_magic_points()*25)+" "*25
-            output += mp_num[-8:] + " |" + Colours.BLUE + mp_bar[:25] + Colours.END + "|"
+            mp_bar = "█"*int(self.get_magic_points()/self.get_max_magic_points()*25)
+            output += self.get_mp_status_string().rjust(8) + " |" + Colours.BLUE + mp_bar.ljust(25) + Colours.END + "|"
         print(output)
 
     def is_dead(self):
@@ -211,12 +209,11 @@ class Character:
     def get_max_magic_points(self):
         return self.max_magic_points
 
+    def get_experience(self):
+        return self.experience
+
     # Return false if there is no inventory, otherwise the inventory list.
     def get_inventory(self):
         if not self.inventory:
             return False
         return self.inventory
-
-    
-    
-    

@@ -27,7 +27,7 @@ enemies = [enemy1, enemy2, enemy3]
 if __name__ == "__main__":
     # Initiate terminal colours for Windows
     colorama.init()
-    print("Hello "+Colours.RED+"THERE"+Colours.END+"!")
+    print("A party of enemies "+Colours.RED+"attacks!"+Colours.END+"!")
 
     running = True
     while running:
@@ -45,12 +45,14 @@ if __name__ == "__main__":
         print("\n"+"-"*25)
         for enemy in enemies:
             enemy.move(enemies, players)
-        
+
         if not enemies or not players:
             running = False
-    
+
     if not enemies:
         print(Colours.GREEN+"You have overcome your enemies!"+Colours.END)
+        for player in players:
+            print(player.get_The_name(),"has",player.get_experience()," experience points.")
     else:
         print(Colours.RED+"You have been defeated!"+Colours.END)
 
